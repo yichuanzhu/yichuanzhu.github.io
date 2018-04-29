@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Creating Powerpoint Compatible videos with FFMPEG | Dreamer</title>
+  <meta name="author" content="Yichuan Zhu">
+  
+  <meta name="description" content="">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Creating Powerpoint Compatible videos with FFMPEG"/>
+  <meta property="og:site_name" content="Dreamer"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Dreamer" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Dreamer</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2018-04-22T01:11:08.000Z"><a href="/2018/04/21/ffmpeg power point/">2018-04-21</a></time>
+      
+      
+  
+    <h1 class="title">Creating Powerpoint Compatible videos with FFMPEG</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%" class="center"></p>
+<a id="more"></a>
+<p>Last week, I generated some videos and need to play them synchronous in the power point. It went well at the beginning but stuttered and stopped after three or four loops. I found this glitch is common for plenty of occasions, this article is aiming at providing some solutions, with the powerful <code>ffmpeg</code>.</p>
+<h2 id="1-The-crux-of-the-matter"><a href="#1-The-crux-of-the-matter" class="headerlink" title="1. The crux of the matter"></a>1. The crux of the matter</h2><p>Power point supports tons of video formats. However, it doesn’t mean all of them are equally supported inside. Actually, Microsoft offered <a href="https://support.office.com/en-us/article/Video-and-audio-file-formats-supported-in-PowerPoint-d8b12450-26db-4c7b-a5c1-593d3418fb59" target="_blank" rel="noopener">reference about supported format and recommendations</a>. Mp4 files encoded with <code>H.264</code> video (a.k.a. MPEG-4 AVC) and <code>AAC</code> audio are favored format. Thus, if you only have one video to present the task is pretty simple, just re-enconde using libx264.</p>
+<h2 id="2-Format-converting"><a href="#2-Format-converting" class="headerlink" title="2. Format converting"></a>2. Format converting</h2><p>The first step is to install <code>ffmpeg</code> you can find tutorials for Windows <a href="https://www.wikihow.com/Install-FFmpeg-on-Windows" target="_blank" rel="noopener">here</a>, and for Mac <a href="https://ericholsinger.com/install-ffmpeg-on-a-mac" target="_blank" rel="noopener">here</a>. For windows user, if you don’t have admisnistor privilege, you can just unzip the package and <code>cd</code> the bin folder to run the program. </p>
+<p>After installation, typing <code>ffmpeg</code> in the terminal, if you see the window looks like below, you installed successfully!</p>
+<p><img src="https://i.imgur.com/XJ3e39t.png" alt=""></p>
+<p>Let’s convert a video with <code>H.264</code>, in <code>ffmpeg</code> it would be like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i field.mp4 -c:v libx264 -crf 18 field_crf18.mp4</span><br></pre></td></tr></table></figure>
+<p>Comparing the quality:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><em>Original video</em></th>
+<th style="text-align:center"><em>Re-encode with crf=18</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://i.imgur.com/FxQV3do.png" width="350px" height="210px" class="center"></td>
+<td style="text-align:center"><img src="https://imgur.com/OtkEiEV.png" width="350px" height="210px" class="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Note here we set constant rate factor (<code>crf</code>) as 18. The range of the <code>crf</code> scale is <code>0–51</code>, where <code>0</code> is lossless, <code>23</code> is the default, and <code>51</code> is worst quality possible. A lower value leads to higher quality, and a subjectively sane range is <code>17-28</code>. Consider 17 or 18 to be visually lossless or nearly so. However, let’s compare the result when <code>crf=45</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i field.mp4 -c:v libx264 -crf 45 field_crf45.mp4</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><em>Original video</em></th>
+<th style="text-align:center"><em>Re-encode with crf=45</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://i.imgur.com/FxQV3do.png" width="350px" height="210px" class="center"></td>
+<td style="text-align:center"><img src="https://imgur.com/RL5UEFa.png" width="350px" height="210px" class="center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-Scale-crop-and-pad"><a href="#3-Scale-crop-and-pad" class="headerlink" title="3. Scale, crop, and pad"></a>3. Scale, crop, and pad</h2><p>If the video is wider or too short for presentation, we need ways to resize it. Herein, we introduce some common options should do the trick.</p>
+<h3 id="3-1-Scale"><a href="#3-1-Scale" class="headerlink" title="3.1 Scale"></a>3.1 Scale</h3><p>First, we have a video with original size as $1920\times1080$. It can be resized like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon.mp4 -vf scale=640:480,setdar=4:3 moon_sc.mp4</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><em>Orginal video</em></th>
+<th style="text-align:center"><em>Resize into $640\times480$</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
+<td style="text-align:center"><img src="https://imgur.com/ewExP82.png" style="zoom:25%" class="center"></td>
+</tr>
+</tbody>
+</table>
+<p>The video has been distorted with another aspect ratio. We can set the width or height to <code>-2</code> (computed value will be even) in order to let <code>ffmpeg</code> resize the video keeping the aspect ratio:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon.mp4 -vf scale=-2:480 moon_sc_ar.mp4</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><em>Orginal video</em></th>
+<th style="text-align:center"><em>Resize with original aspect ratio</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
+<td style="text-align:center"><img src="https://imgur.com/s7B5oiU.png" style="zoom:25%" class="center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2-Crop"><a href="#3-2-Crop" class="headerlink" title="3.2 Crop"></a>3.2 Crop</h3><p>Your rescaled video size from last section is $853\times480$, it is bigger than expected $640\times480$. We can crop the video like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon_sc_ar.mp4 -vf &quot;crop=640:in_h:(in_w-out_w)/2:0&quot; moon_sc_ar_crp.mp4</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><em>Re-sized video</em></th>
+<th style="text-align:center"><em>After cropping</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://imgur.com/s7B5oiU.png" style="zoom:25%" class="center"></td>
+<td style="text-align:center"><img src="https://imgur.com/mTVI06S.png" style="zoom:25%" class="center"></td>
+</tr>
+</tbody>
+</table>
+<p>In the definition of  <code>crop=out_w:out_h:x:y</code>:</p>
+<ul>
+<li><code>out_w</code> indicate the width of the output rectangle</li>
+<li><code>out_h</code> indicate the height of the output rectangle</li>
+<li><code>x</code> and <code>y</code> are the top left corner of the output rectangle</li>
+</ul>
+<p>In the given example <code>crop=640:in_h:(in_w-out_w)/2:0</code>, the output rectangle has width=640, output height=input height, and will reserve the central area.</p>
+<h3 id="3-3-Pad"><a href="#3-3-Pad" class="headerlink" title="3.3 Pad"></a>3.3 Pad</h3><p>The last one is pad. It is basically very similar to the crop process. For example, if we want to pad last video back to original size $1920\times1080$:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2&quot; moon_pad.mp4</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><em>Original video</em></th>
+<th style="text-align:center"><em>After padding</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
+<td style="text-align:center"><img src="https://imgur.com/5jnPjRg.png" style="zoom:25%" class="center"></td>
+</tr>
+</tbody>
+</table>
+<p>The color of padding area can be changed into white like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2:white&quot; moon_padwhite.mp4</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><em>Original video</em></th>
+<th style="text-align:center">Padding with white background</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
+<td style="text-align:center"><img src="https://imgur.com/xzKdFS6.png" style="zoom:25%" class="center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-Stack"><a href="#4-Stack" class="headerlink" title="4. Stack"></a>4. Stack</h2><p>Now, <code>ffmpeg</code> has provided <code>hstack</code> and <code>vstack</code> that we can use to stack videos.</p>
+<p>For example, we have two videos:</p>
+<p> <img src="https://imgur.com/yX8SRSf.png" style="zoom:27%" class="center"> <img src="https://imgur.com/PNqIOOo.png" style="zoom:27%" class="center"></p>
+<p>We can stack videos horizontally:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex hstack hComb.mp4</span><br></pre></td></tr></table></figure>
+<p><img src="https://imgur.com/dztUXOW.jpg" style="zoom:25%" class="center"></p>
+<p>Or vertically:</p>
+<p><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex vstack vComb.mp4</code></p>
+<p><img src="https://imgur.com/F5AvFvV.jpg" style="zoom:25%" class="center"></p>
+<p>Let’s using <code>hstack</code> and <code>vstack</code> to create a $4\times4$ video mosaic:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i field.mp4 -i moon.mp4 -i relax.mp4 -i stream.mp4 -filter_complex &quot;[0:v][1:v]hstack[h1];[2:v][3:v]hstack[h2];[h1][h2]vstack[v]&quot; -map &quot;[v]&quot; -c:v libx264 -crf 18 combAll.mp4</span><br></pre></td></tr></table></figure>
+<div class="video-container"><iframe src="//www.youtube.com/embed/uXvismUlmMU" frameborder="0" allowfullscreen></iframe></div>
+<p>Woohoo!!</p>
+<p>(All sample videos are from <a href="https://videos.pexels.com/" target="_blank" rel="noopener">https://videos.pexels.com/</a>)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2018/04/21/ffmpeg power point/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2018 Yichuan Zhu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
