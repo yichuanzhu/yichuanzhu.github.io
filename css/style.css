@@ -136,6 +136,7 @@ a:hover {
 }
 article {
   -webkit-box-shadow: 1px 2px 3px #ddd;
+  -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
   background: #fff;
 }
@@ -260,7 +261,6 @@ article header time {
   color: #999;
   font: 0.9em "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   margin-bottom: 5px;
-  display: block;
   line-height: 1;
 }
 article header .title {
@@ -272,6 +272,14 @@ article header .title a {
 article header .title a:hover {
   color: #258fb8;
   text-decoration: none;
+}
+article header .post-count {
+  margin-bottom: 5px;
+  color: #999;
+  font: 0.8em Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+article header .floatRight {
+  float: right;
 }
 article .entry {
   text-align: justify;
@@ -290,6 +298,34 @@ article .entry h5,
 article .entry h6,
 article .entry .video-container {
   margin-top: 15px;
+}
+article .entry pre {
+  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
+  background: #282c34;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+  overflow: auto;
+  padding: 7px 15px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+article .entry pre code {
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+article .entry code {
+  background: #eee;
+  color: #666;
+  padding: 0 5px;
+  margin: 0 2px;
+  font-size: 0.9em;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 article .entry table {
   border-collapse: collapse;
@@ -330,34 +366,6 @@ article .entry blockquote footer cite:before {
   content: '—';
   color: #ccc;
   padding: 0 0.5em;
-}
-article .entry code,
-article .entry pre {
-  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
-}
-article .entry code {
-  background: #eee;
-  color: #666;
-  padding: 0 5px;
-  margin: 0 2px;
-  font-size: 0.9em;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-}
-article .entry pre {
-  background: #eee;
-  border: 1px solid #ddd;
-  margin-top: 15px;
-  overflow: auto;
-  padding: 7px 15px;
-  border-radius: 2px;
-}
-article .entry pre code {
-  background: none;
-  padding: 0;
-  margin: 0;
-  border: none;
-  border-radius: 0;
 }
 article .entry ul,
 article .entry ol,

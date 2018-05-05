@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>Creating Powerpoint Compatible videos with FFMPEG | Pale Blue Dot</title>
   <meta name="author" content="Yichuan Zhu">
@@ -19,16 +19,18 @@
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Pale Blue Dot" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+<!--   <link rel="alternate" href="/atom.xml" title="Pale Blue Dot" type="application/atom+xml">
+ --><!--   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"> -->
+  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/style.css?v=20170717" media="screen" type="text/css"> 
+  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
-
+  <!--
+--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
 <body>
-  <header id="header" class="inner"><div class="alignleft">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">Pale Blue Dot</a></h1>
   <h2><a href="/">Engineering, Statistics, Programming</a></h2>
 </div>
@@ -39,6 +41,8 @@
     
       <li><a href="/archives">Archives</a></li>
     
+      <li><a href="/about">About</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -46,24 +50,25 @@
 
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css">
+<article class="post">
   
-  <div class="post-content">
-    <header>
-        <div class="icon"></div>
-        <time datetime="2018-04-22T01:11:08.000Z"><a href="/2018/04/21/ffmpeg power point/">2018-04-21</a></time>
-          <span class="floatRight">
-            <span class="post-count" id="busuanzi_container_page_pv" 
-            style="display: inline;">
-            page views: <span id="busuanzi_value_page_pv"></span>
-            </span>
-          </span>
-      
+       <div class="post-content">
+         <header>
+            
+              <div class="icon"></div>
+              <time datetime="2018-04-22T01:11:08.000Z"><a href="/2018/04/21/ffmpeg power point/">2018-04-21</a></time>
+            
+              
+                <span class="floatRight"><span class="post-count" id="busuanzi_container_page_pv">Page views: <span id="busuanzi_value_page_pv"></span></span>
+                </span>
+                
+            
   
     <h1 class="title">Creating Powerpoint Compatible videos with FFMPEG</h1>
   
 
-    </header>
+          </header>
     <div class="entry">
       
         <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%" class="center"></p>
@@ -74,8 +79,8 @@
 <p>After installation, typing <code>ffmpeg</code> in the terminal, if you see the window looks like below, you installed successfully!</p>
 <p><img src="https://i.imgur.com/XJ3e39t.png" alt=""></p>
 <p>Let’s convert a video with <code>H.264</code>, in <code>ffmpeg</code> it would be like:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i field.mp4 -c:v libx264 -crf 18 field_crf18.mp4</span><br></pre></td></tr></table></figure>
-<p>Comparing the quality:</p>
+<pre><code>ffmpeg -i field.mp4 -c:v libx264 -crf 18 field_crf18.mp4
+</code></pre><p>Comparing the quality:</p>
 <table>
 <thead>
 <tr>
@@ -91,8 +96,8 @@
 </tbody>
 </table>
 <p>Note here we set constant rate factor (<code>crf</code>) as 18. The range of the <code>crf</code> scale is <code>0–51</code>, where <code>0</code> is lossless, <code>23</code> is the default, and <code>51</code> is worst quality possible. A lower value leads to higher quality, and a subjectively sane range is <code>17-28</code>. Consider 17 or 18 to be visually lossless or nearly so. However, let’s compare the result when <code>crf=45</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i field.mp4 -c:v libx264 -crf 45 field_crf45.mp4</span><br></pre></td></tr></table></figure>
-<table>
+<pre><code>ffmpeg -i field.mp4 -c:v libx264 -crf 45 field_crf45.mp4
+</code></pre><table>
 <thead>
 <tr>
 <th style="text-align:center"><em>Original video</em></th>
@@ -108,8 +113,8 @@
 </table>
 <h2 id="3-Scale-crop-and-pad"><a href="#3-Scale-crop-and-pad" class="headerlink" title="3. Scale, crop, and pad"></a>3. Scale, crop, and pad</h2><p>If the video is wider or too short for presentation, we need ways to resize it. Herein, we introduce some common options should do the trick.</p>
 <h3 id="3-1-Scale"><a href="#3-1-Scale" class="headerlink" title="3.1 Scale"></a>3.1 Scale</h3><p>First, we have a video with original size as $1920\times1080$. It can be resized like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon.mp4 -vf scale=640:480,setdar=4:3 moon_sc.mp4</span><br></pre></td></tr></table></figure>
-<table>
+<pre><code>ffmpeg -i moon.mp4 -vf scale=640:480,setdar=4:3 moon_sc.mp4
+</code></pre><table>
 <thead>
 <tr>
 <th style="text-align:center"><em>Orginal video</em></th>
@@ -124,8 +129,8 @@
 </tbody>
 </table>
 <p>The video has been distorted with another aspect ratio. We can set the width or height to <code>-2</code> (computed value will be even) in order to let <code>ffmpeg</code> resize the video keeping the aspect ratio:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon.mp4 -vf scale=-2:480 moon_sc_ar.mp4</span><br></pre></td></tr></table></figure>
-<table>
+<pre><code>ffmpeg -i moon.mp4 -vf scale=-2:480 moon_sc_ar.mp4
+</code></pre><table>
 <thead>
 <tr>
 <th style="text-align:center"><em>Orginal video</em></th>
@@ -140,8 +145,8 @@
 </tbody>
 </table>
 <h3 id="3-2-Crop"><a href="#3-2-Crop" class="headerlink" title="3.2 Crop"></a>3.2 Crop</h3><p>Your rescaled video size from last section is $853\times480$, it is bigger than expected $640\times480$. We can crop the video like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon_sc_ar.mp4 -vf &quot;crop=640:in_h:(in_w-out_w)/2:0&quot; moon_sc_ar_crp.mp4</span><br></pre></td></tr></table></figure>
-<table>
+<pre><code>ffmpeg -i moon_sc_ar.mp4 -vf &quot;crop=640:in_h:(in_w-out_w)/2:0&quot; moon_sc_ar_crp.mp4
+</code></pre><table>
 <thead>
 <tr>
 <th style="text-align:center"><em>Re-sized video</em></th>
@@ -163,8 +168,8 @@
 </ul>
 <p>In the given example <code>crop=640:in_h:(in_w-out_w)/2:0</code>, the output rectangle has width=640, output height=input height, and will reserve the central area.</p>
 <h3 id="3-3-Pad"><a href="#3-3-Pad" class="headerlink" title="3.3 Pad"></a>3.3 Pad</h3><p>The last one is pad. It is basically very similar to the crop process. For example, if we want to pad last video back to original size $1920\times1080$:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2&quot; moon_pad.mp4</span><br></pre></td></tr></table></figure>
-<table>
+<pre><code>ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2&quot; moon_pad.mp4
+</code></pre><table>
 <thead>
 <tr>
 <th style="text-align:center"><em>Original video</em></th>
@@ -179,8 +184,8 @@
 </tbody>
 </table>
 <p>The color of padding area can be changed into white like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2:white&quot; moon_padwhite.mp4</span><br></pre></td></tr></table></figure>
-<table>
+<pre><code>ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2:white&quot; moon_padwhite.mp4
+</code></pre><table>
 <thead>
 <tr>
 <th style="text-align:center"><em>Original video</em></th>
@@ -198,14 +203,14 @@
 <p>For example, we have two videos:</p>
 <p> <img src="https://imgur.com/yX8SRSf.png" style="zoom:27%" class="center"> <img src="https://imgur.com/PNqIOOo.png" style="zoom:27%" class="center"></p>
 <p>We can stack videos horizontally:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex hstack hComb.mp4</span><br></pre></td></tr></table></figure>
-<p><img src="https://imgur.com/dztUXOW.jpg" style="zoom:25%" class="center"></p>
+<pre><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex hstack hComb.mp4
+</code></pre><p><img src="https://imgur.com/dztUXOW.jpg" style="zoom:25%" class="center"></p>
 <p>Or vertically:</p>
 <p><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex vstack vComb.mp4</code></p>
 <p><img src="https://imgur.com/F5AvFvV.jpg" style="zoom:25%" class="center"></p>
 <p>Let’s using <code>hstack</code> and <code>vstack</code> to create a $4\times4$ video mosaic:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i field.mp4 -i moon.mp4 -i relax.mp4 -i stream.mp4 -filter_complex &quot;[0:v][1:v]hstack[h1];[2:v][3:v]hstack[h2];[h1][h2]vstack[v]&quot; -map &quot;[v]&quot; -c:v libx264 -crf 18 combAll.mp4</span><br></pre></td></tr></table></figure>
-<div class="video-container"><iframe src="//www.youtube.com/embed/uXvismUlmMU" frameborder="0" allowfullscreen></iframe></div>
+<pre><code>ffmpeg -i field.mp4 -i moon.mp4 -i relax.mp4 -i stream.mp4 -filter_complex &quot;[0:v][1:v]hstack[h1];[2:v][3:v]hstack[h2];[h1][h2]vstack[v]&quot; -map &quot;[v]&quot; -c:v libx264 -crf 18 combAll.mp4
+</code></pre><div class="video-container"><iframe src="//www.youtube.com/embed/uXvismUlmMU" frameborder="0" allowfullscreen></iframe></div>
 <p>Woohoo!!</p>
 <p>(All sample videos are from <a href="https://videos.pexels.com/" target="_blank" rel="noopener">https://videos.pexels.com/</a>)</p>
 
@@ -282,22 +287,16 @@
 </div>
 <div class="clearfix"></div>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script></footer>
+</footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
+
+
+
+
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -313,6 +312,23 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
