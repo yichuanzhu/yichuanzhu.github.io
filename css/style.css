@@ -311,6 +311,7 @@ article .entry pre {
 }
 article .entry pre code {
   background: none;
+  color: #ddddda;
   padding: 0;
   margin: 0;
   border: none;
@@ -318,8 +319,6 @@ article .entry pre code {
   border-radius: 0;
 }
 article .entry code {
-  background: #eee;
-  color: #666;
   padding: 0 5px;
   margin: 0 2px;
   font-size: 0.9em;
