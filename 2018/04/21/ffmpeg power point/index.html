@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="https://oindk07nf.qnssl.com/style.css?v=20170717" media="screen" type="text/css"> 
   <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/plugins/highlight/styles/rainbow.css">
   <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
@@ -48,7 +49,7 @@
 
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/rainbow.css">
+    <div id="main-col" class="alignleft"><div id="wrapper"><!-- <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/rainbow.css"> -->
 <article class="post">
   
        <div class="post-content">
@@ -204,10 +205,12 @@
 <pre><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex hstack hComb.mp4
 </code></pre><p><img src="https://imgur.com/dztUXOW.jpg" style="zoom:25%" class="center"></p>
 <p>Or vertically:</p>
-<p><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex vstack vComb.mp4</code></p>
-<p><img src="https://imgur.com/F5AvFvV.jpg" style="zoom:25%" class="center"></p>
+<pre><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex vstack vComb.mp4
+</code></pre><p><img src="https://imgur.com/F5AvFvV.jpg" style="zoom:25%" class="center"></p>
 <p>Let’s using <code>hstack</code> and <code>vstack</code> to create a $4\times4$ video mosaic:</p>
-<pre><code>ffmpeg -i field.mp4 -i moon.mp4 -i relax.mp4 -i stream.mp4 -filter_complex &quot;[0:v][1:v]hstack[h1];[2:v][3:v]hstack[h2];[h1][h2]vstack[v]&quot; -map &quot;[v]&quot; -c:v libx264 -crf 18 combAll.mp4
+<pre><code>ffmpeg -i field.mp4 -i moon.mp4 -i relax.mp4 -i stream.mp4 \
+-filter_complex &quot;[0:v][1:v]hstack[h1];[2:v][3:v]hstack[h2];[h1][h2]vstack[v]&quot; \
+-map &quot;[v]&quot; -c:v libx264 -crf 18 combAll.mp4
 </code></pre><div class="video-container"><iframe src="//www.youtube.com/embed/uXvismUlmMU" frameborder="0" allowfullscreen></iframe></div>
 <p>Woohoo!!</p>
 <p>(All sample videos are from <a href="https://videos.pexels.com/" target="_blank" rel="noopener">https://videos.pexels.com/</a>)</p>
@@ -241,6 +244,11 @@
     </footer>
   </div>
 </article>
+<script src="/plugins/highlight/highlight.pack.js">
+</script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
 
 
 
@@ -271,11 +279,7 @@
 <div class="clearfix"></div>
 
 
-<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js">
-</script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script></footer>
+</footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
