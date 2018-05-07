@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="https://oindk07nf.qnssl.com/style.css?v=20170717" media="screen" type="text/css"> 
   <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/plugins/highlight/styles/rainbow.css">
   <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
@@ -49,7 +48,7 @@
 
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><!-- <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/rainbow.css"> -->
+    <div id="main-col" class="alignleft"><div id="wrapper"><link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/rainbow.css">
 <article class="post">
   
        <div class="post-content">
@@ -82,13 +81,13 @@
 <p><img src="https://imgur.com/Spci2un.png" width="2000px;" height="500px;" float="left/"></p>
 <p>Thus, we can conclude the mean of averaged SAT score among all campus is <code>1058</code>, the first and third quanrtile are <code>970</code> and <code>1119</code>, respectively. Number of <code>NA&#39;s</code> informs we don’t have data for <code>6315</code> institutions.</p>
 <p>Plot the <code>frequency histogram</code> of SAT_AVG:</p>
-<pre><code>
-hist(as.numeric(myDat$SAT_AVG), 
+<pre><code class="R">hist(as.numeric(myDat$SAT_AVG), 
      main=&quot;Histogram of averaged SAT score&quot;, 
      xlab=&quot;Score&quot;, 
      col=&quot;blue&quot;,
      xlim=c(500,1600),
-     las=1)</code></pre>
+     las=1)
+</code></pre>
 <p><img src="https://imgur.com/6DPuEFZ.png" class="center"></p>
 <p>Plot the <code>empirical cumulative density function</code> of the SAT_AVG:</p>
 <pre><code>
@@ -178,7 +177,9 @@ ggplot(dat2D, aes(x,y)) + stat_bin2d(bins = 50) +
 <script>
   hljs.initHighlightingOnLoad();
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 
 
