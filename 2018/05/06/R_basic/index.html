@@ -19,10 +19,14 @@
   
 
 
-  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/style.css?v=20170717" media="screen" type="text/css"> 
-  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
+  <!-- <link rel="stylesheet" href="https://oindk07nf.qnssl.com/style.css?v=20170717" media="screen" type="text/css">  -->
+  <!-- <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css"> -->
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <!--prettify代码高亮主题css引入-->
+  <!-- <link href="/plugins/themes/tranquil-heart.css" rel="stylesheet"> -->
+   <link rel="stylesheet" href="/plugins/highlight/styles/rainbow.css">
+  <script src="/plugins/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -90,57 +94,58 @@
 </code></pre>
 <p><img src="https://imgur.com/6DPuEFZ.png" class="center"></p>
 <p>Plot the <code>empirical cumulative density function</code> of the SAT_AVG:</p>
-<pre><code>
-# sort the data
+<pre><code class="R"># sort the data
 SAT_avg.sorted &lt;- sort(as.numeric(myDat$SAT_AVG))
 SAT_avg.size &lt;- length(SAT_avg.sorted)
 
-plot(SAT_avg.sorted , (1:SAT_avg.size)&#x2F;SAT_avg.size, type = &#39;s&#39;, ylim = c(0, 1), 
+plot(SAT_avg.sorted , (1:SAT_avg.size)/SAT_avg.size, type = &#39;s&#39;, ylim = c(0, 1), 
      xlab = &#39;Averaged SAT score&#39;, ylab = expression(F[n](x)), 
-     main = &#39;Empirical Cumluative Distribution&#39;)</code></pre>
+     main = &#39;Empirical Cumluative Distribution&#39;)
+</code></pre>
 <p><img src="https://imgur.com/l8o1DPl.png" class="center"></p>
 <h1 id="Correlation"><a href="#Correlation" class="headerlink" title="Correlation"></a>Correlation</h1><p>Herein, I choose two intuitively correlated variables to demonstrate the usage. The first variable is  <strong>NPT4_PUB</strong>, represent average net price for Title IV institutions (public institutions). Second variable is  <strong>MD_EARN_WNE_P10</strong>, indicate the median earnings of students working and not enrolled 10 years after entry.</p>
-<p>First, we plot the scatters:<br><pre><code>
-# Load data-sets
+<p>First, we plot the scatters:</p>
+<pre><code class="R"># Load data-sets
 price_avg &lt;- as.numeric(myDat$NPT4_PUB)
 mdEarn &lt;- as.numeric(myDat$MD_EARN_WNE_P10)
 
 # delete all NA values
 datLen = length(price_avg)
 datComb = matrix(c(price_avg, mdEarn), nrow=datLen, ncol=2)
-
 datClean = na.omit(datComb)
 
 # Scatter plot
-plot(datClean, xlab = &quot;Averaged net price&quot;, ylab = &quot;median earnings of students&quot;)</code></pre><br><img src="https://imgur.com/dPKxAxf.png" class="center"></p>
+plot(datClean, xlab = &quot;Averaged net price&quot;, ylab = &quot;median earnings of students&quot;)
+</code></pre>
+<p><img src="https://imgur.com/dPKxAxf.png" class="center"></p>
 <p>It seems money spend on education paid off in the future. We can further plot <code>2D histogram</code> to get the density sense:</p>
-<pre><code>
-# 2d Histogram
+<pre><code class="R"># 2d Histogram
 library(ggplot2)
 x &lt;- datClean[,1]
 y &lt;- datClean[,2]
 dat2D &lt;- data.frame(x,y)
 ggplot(dat2D, aes(x,y)) + stat_bin2d(bins = 50) +
   xlab(&quot;Averaged net price&quot;) + 
-  ylab(&quot;median earnings of students&quot;)</code></pre>
+  ylab(&quot;median earnings of students&quot;)
+</code></pre>
 <p><img src="https://imgur.com/SgsIBPb.png" class="center"></p>
 <h1 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h1><p>We can use <code>lm()</code> get pearson correlation coefficient (linear fit),</p>
 <p><img src="https://imgur.com/JFUNVe5.png" width="2000px;" height="500px;" float="left/"></p>
 <p>Or, directly plot with previous result,</p>
-<pre><code>
-# Plot histogram with linear regression
+<pre><code class="R"># Plot histogram with linear regression
 ggplot(dat2D, aes(x,y)) + stat_bin2d(bins = 50) +
   geom_smooth(method=&#39;lm&#39;) + 
   xlab(&quot;Averaged net price&quot;) + 
-  ylab(&quot;median earnings of students&quot;)</code></pre>
+  ylab(&quot;median earnings of students&quot;)
+</code></pre>
 <p><img src="https://imgur.com/R0VA7PX.png" class="center"></p>
 <p>Fit a non-linear function,</p>
-<pre><code>
-# Plot histogram with linear regression
+<pre><code class="R"># Plot histogram with linear regression
 ggplot(dat2D, aes(x,y)) + stat_bin2d(bins = 50) +
   geom_smooth(method=&#39;glm&#39;, method.args=list(family=gaussian(link=&quot;log&quot;))) + 
   xlab(&quot;Averaged net price&quot;) + 
-  ylab(&quot;median earnings of students&quot;)</code></pre>
+  ylab(&quot;median earnings of students&quot;)
+</code></pre>
 <p><img src="https://imgur.com/gVzKODo.png" class="center"></p>
 
       
@@ -172,14 +177,7 @@ ggplot(dat2D, aes(x,y)) + stat_bin2d(bins = 50) +
     </footer>
   </div>
 </article>
-<script src="/plugins/highlight/highlight.pack.js">
-</script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -215,6 +213,15 @@ ggplot(dat2D, aes(x,y)) + stat_bin2d(bins = 50) +
 <script src="/js/gallery.js"></script>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
+<!--prettify代码高亮脚本引入-->
+<!-- <script src="/plugins/prettify/prettify.js"></script>
+<script src="/plugins/prettify/lang-r.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+ prettyPrint();
+})
+</script> -->
 
 
 

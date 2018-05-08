@@ -284,6 +284,13 @@ article header .floatRight {
 article .entry {
   text-align: justify;
   line-height: 1.6;
+/*code
+      padding 0 5px
+      margin 0 2px
+      font-size 0.9em
+      border 1px solid #ddd
+      webkit-border-radius 3px
+      border-radius 3px*/
 }
 article .entry p,
 article .entry blockquote,
@@ -298,33 +305,6 @@ article .entry h5,
 article .entry h6,
 article .entry .video-container {
   margin-top: 15px;
-}
-article .entry pre {
-  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
-  background: #282c34;
-  border: 1px solid #ddd;
-  margin-top: 15px;
-  overflow: auto;
-  padding: 7px 15px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-}
-article .entry pre code {
-  background: none;
-  color: #ddddda;
-  padding: 0;
-  margin: 0;
-  border: none;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-}
-article .entry code {
-  padding: 0 5px;
-  margin: 0 2px;
-  font-size: 0.9em;
-  border: 1px solid #ddd;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
 }
 article .entry table {
   border-collapse: collapse;
@@ -717,6 +697,10 @@ figure.highlight {
   overflow: auto;
   position: relative;
   font-size: 0.9em;
+/*.code
+    padding-left 15px
+    border-left 1px solid #fff
+    color #666*/
 }
 figure.highlight figcaption {
   color: #999;
@@ -741,11 +725,6 @@ figure.highlight .gutter {
   padding-right: 15px;
   border-right: 1px solid #ddd;
   text-align: right;
-}
-figure.highlight .code {
-  padding-left: 15px;
-  border-left: 1px solid #fff;
-  color: #666;
 }
 figure.highlight .line {
   height: 20px;
@@ -821,3 +800,10 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
+/*pre.prettyprint{
+ padding-left: 20px;
+}*/
+/*pre{
+   word-break: break-all;
+   word-wrap: break-word;
+}*/
