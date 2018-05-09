@@ -658,6 +658,7 @@ article footer .addthis iframe {
   padding-right: 5px;
 }
 #sidebar .tagcloud a {
+  font-size: 1.2em;
   margin-right: 10px;
   display: inline-block;
 }
