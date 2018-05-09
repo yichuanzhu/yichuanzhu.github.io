@@ -566,12 +566,12 @@ article footer .addthis iframe {
 }
 #sidebar .widget .title {
   padding: 15px 20px;
-  font-size: 1em;
+  font-size: 1.5em;
   border-bottom: 1px solid #ddd;
   font-weight: normal;
 }
 #sidebar .widget .entry {
-  font-size: 0.9em;
+  font-size: 1.2em;
   padding: 15px 20px;
 }
 #sidebar .widget ul,
