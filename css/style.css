@@ -276,7 +276,7 @@ article header .title a:hover {
 article header .post-count {
   margin-bottom: 5px;
   color: #999;
-  font: 0.8em Helvetica Neue, Helvetica, Arial, sans-serif;
+  font: 1.2em Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 article header .floatRight {
   float: right;
@@ -284,6 +284,7 @@ article header .floatRight {
 article .entry {
   text-align: justify;
   line-height: 1.6;
+  font-size: 1.2em;
 /*code
       padding 0 5px
       margin 0 2px
@@ -305,6 +306,25 @@ article .entry h5,
 article .entry h6,
 article .entry .video-container {
   margin-top: 15px;
+}
+article .entry pre {
+  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
+  background: #282c34;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+  overflow: auto;
+  padding: 7px 15px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+article .entry pre code {
+  background: none;
+  color: #ddddda;
+  padding: 0;
+  margin: 0;
+  border: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
 }
 article .entry table {
   border-collapse: collapse;
