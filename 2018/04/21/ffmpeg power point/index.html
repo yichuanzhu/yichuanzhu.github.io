@@ -73,7 +73,7 @@
           </header>
     <div class="entry">
       
-        <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%" class="center"></p>
+        <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%"></p>
 <a id="more"></a>
 <p>Last week, I generated some videos and need to play them synchronous in the power point. It went well at the beginning but stuttered and stopped after three or four loops. I found this glitch is common for plenty of occasions, this article is aiming at providing some solutions, with the powerful <code>ffmpeg</code>.</p>
 <h2 id="1-The-crux-of-the-matter"><a href="#1-The-crux-of-the-matter" class="headerlink" title="1. The crux of the matter"></a>1. The crux of the matter</h2><p>Power point supports tons of video formats. However, it doesn’t mean all of them are equally supported inside. Actually, Microsoft offered <a href="https://support.office.com/en-us/article/Video-and-audio-file-formats-supported-in-PowerPoint-d8b12450-26db-4c7b-a5c1-593d3418fb59" target="_blank" rel="noopener">reference about supported format and recommendations</a>. Mp4 files encoded with <code>H.264</code> video (a.k.a. MPEG-4 AVC) and <code>AAC</code> audio are favored format. Thus, if you only have one video to present the task is pretty simple, just re-enconde using libx264.</p>
@@ -219,7 +219,17 @@
 <p>(All sample videos are from <a href="https://videos.pexels.com/" target="_blank" rel="noopener">https://videos.pexels.com/</a>)</p>
 
       
+      <!-- <a href="http://creativecommons.org/licenses/by-sa/4.0/">
+      <div class="post-license">The content of this post is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</div>
+      </a> -->    
     </div>
+    <br/>
+    <div>
+    <img src="https://i.imgur.com/3zE35HW.png" width="100px" align="left"> 
+    </div>
+<!--     <div class="post-license" align="right">
+        Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+    </div> -->
     <footer>
       
         
@@ -245,33 +255,18 @@
     
       <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
     
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
+<!--      -->
     <a class="addthis_counter addthis_pill_style"></a>
   </div>
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
 
       
       <div class="clearfix"></div>
+      
+      
+      <div id="disqus_thread"></div>
     </footer>
-  </div>
 </article>
-
-
-<script>
-  var disqus_shortname = 'yichuanzhu';
-  
-  var disqus_url = 'http://yoursite.com/2018/04/21/ffmpeg power point/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
 
 
 
@@ -287,7 +282,7 @@
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Data-science/">Data science</a><small>1</small></li>
+    <li><a href="/categories/Computational-Statistic/">Computational Statistic</a><small>1</small></li>
   
     <li><a href="/categories/Media-Production/">Media Production</a><small>1</small></li>
   
@@ -311,9 +306,16 @@
   &copy; 2018 Yichuan Zhu
   
 </div>
-<div class="clearfix"></div>
- -->
+<div class="clearfix"></div> -->
 
+
+                 
+<footer>
+  &copy; 2018
+  <span class="author">
+    Yichuan Zhu
+  </span>
+  
 <script>
   var disqus_shortname = 'yichuanzhu';
   
@@ -328,14 +330,8 @@
   })();
 </script>
 
-                 
-<footer>
-  &copy; 2018
-  <span class="author">
-    Yichuan Zhu
-  </span>
 </footer>
-<div id="disqus_thread"></div>
+<!-- <div id="disqus_thread"></div> -->
 
 </footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

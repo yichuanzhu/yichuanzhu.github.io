@@ -56,6 +56,9 @@ a:hover {
 .alignright {
   float: right;
 }
+.aligncenter {
+  float: center;
+}
 .clearfix {
   zoom: 1;
 }
@@ -75,6 +78,29 @@ a:hover {
   .inner {
     width: 100%;
   }
+}
+.post-license {
+  font-size: 0.65em;
+  color: #000002;
+  font-family: Monaco;
+  padding: 20px 0px 0px 0px;
+  text-align: right;
+  width: 320px;
+/*.post-license-icon
+    cursor pointer
+    font-size 25px
+    line-height 25px
+    transition all ease 400ms
+
+  .post-license-text
+    padding-bottom 10px
+    color #FF0000
+    transition all ease 400ms
+    font-size .85em
+    word-spacing .04em
+    max-height 0
+    max-width 400px
+    margin auto*/
 }
 #main-col {
   width: 900px;
