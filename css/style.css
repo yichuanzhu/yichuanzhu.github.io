@@ -80,27 +80,75 @@ a:hover {
   }
 }
 .post-license {
-  font-size: 0.65em;
-  color: #000002;
+/*font-size .65em*/
+  color: #aaa;
+/*width 320px*/
   font-family: Monaco;
-  padding: 20px 0px 0px 0px;
-  text-align: right;
-  width: 320px;
-/*.post-license-icon
-    cursor pointer
-    font-size 25px
-    line-height 25px
-    transition all ease 400ms
-
-  .post-license-text
-    padding-bottom 10px
-    color #FF0000
-    transition all ease 400ms
-    font-size .85em
-    word-spacing .04em
-    max-height 0
-    max-width 400px
-    margin auto*/
+  padding: 50px 0px 0px 0px;
+  text-align: center;
+}
+.post-license .post-license-icon {
+  cursor: pointer;
+  visibility: visible;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  font-size: 0.85em;
+  line-height: 5px;
+/*line-height 25px*/
+/*transition all ease-out 400ms*/
+/*br
+      display inline
+      line-height 1px*/
+}
+.post-license .post-license-text {
+  line-height: 17px;
+  color: #000002;
+  font-size: 0.9em;
+  word-spacing: 0.04em;
+  max-height: 0;
+  max-width: 400px;
+  margin: auto;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  text-align: center;
+/*transition opacity 0.3s 0.1s ease*/
+}
+.post-license .post-license-icon:hover>.post-license-text {
+  display: inline;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+/*font-size .85em*/
+/*line-height 25px*/
+  -webkit-transition: opacity 0.3s 0.1s ease-out;
+  -moz-transition: opacity 0.3s 0.1s ease-out;
+  -o-transition: opacity 0.3s 0.1s ease-out;
+  -ms-transition: opacity 0.3s 0.1s ease-out;
+  transition: opacity 0.3s 0.1s ease-out;
+}
+.post-content-end {
+  display: block;
+  font-family: Monaco, Consolas, Ubuntu Mono, Courier New, Courier, monospace;
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  font-weight: 900;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 -35px 40px;
+}
+.post-content-end::before,
+.post-content-end::after {
+  display: inline-block;
+  content: '';
+  height: 5px;
+  width: 280px;
+/*max-width: 30%;*/
+  background: rgba(200,200,200,0.5);
+  vertical-align: top;
+  margin: 22.5px 5% 0;
 }
 #main-col {
   width: 900px;
