@@ -6,7 +6,7 @@
   <title>Ergodic stationary process | Pale Blue Dot</title>
   <meta name="author" content="Yichuan Zhu">
   
-  <meta name="description" content="Whole PictureStationarity is a very important concept in stochastic processes analysis. However, the notion itself is rather intuitive, which sometime">
+  <meta name="description" content="Discuss strictly/weakly stationarity, ergodic theorem, and conditions and relationships of assumptions. Several code snippets are used for example reference.">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -59,7 +59,7 @@
          <header>
             
               <div class="icon"></div>
-              <time datetime="2018-06-06T17:00:41.000Z"><a href="/2018/06/06/Ergodic stationary/">2018-06-06</a></time>
+              <time datetime="2018-06-06T17:42:55.000Z"><a href="/2018/06/06/Ergodic stationary/">2018-06-06</a></time>
             
               
                 <span class="floatRight"><span class="post-count" id="busuanzi_container_page_pv">Page views: <span id="busuanzi_value_page_pv"></span></span>
@@ -73,16 +73,18 @@
           </header>
     <div class="entry">
       
-        <a id="more"></a>
-<h1 id="Whole-Picture"><a href="#Whole-Picture" class="headerlink" title="Whole Picture"></a>Whole Picture</h1><p>Stationarity is a very important concept in stochastic processes analysis. However, the notion itself is rather intuitive, which sometimes is not a good feature for understanding. Additionally, I observed some online lectures and papers are incorrect in their definitions, or unclear in description. I am still in learning process, but herein, some tips offered in this article are hopefully useful for readers.</p>
-<p>Let’s forget all definitions you’ve ever heard about stationarity (I know there are 1,000 different versions!), or ergodicity. Just read the following sentences several times. You don’t need to truly understand it, only remember these relationships. Later, we will discuss with illustrative examples:</p>
+        <p><img src="https://i.imgur.com/IEHJ2pk.png" alt=""></p>
+<p>Discuss strictly/weakly stationarity, ergodic theorem, and conditions and relationships of assumptions. Several code snippets are used for example reference.</p>
+<a id="more"></a>
+<h1 id="Whole-Picture"><a href="#Whole-Picture" class="headerlink" title="Whole Picture"></a>Whole Picture</h1><p>Stationarity is a very important concept in stochastic processes analysis. However, the notion itself is rather intuitive, which sometimes is not a good feature for understanding. Additionally, several online lectures and papers have been noticed possibly incorrect in their definitions, or unclear in descriptions. Herein, some tips offered in this article are hopefully useful for readers.</p>
+<p>Let’s forget all definitions you’ve ever heard about stationarity, or ergodicity. Just focus on the following relationships. You don’t need to truly understand it now. Later, we will discuss with illustrative examples:</p>
 <ul>
 <li><strong><em>Strong stationary does not necessarily imply weak stationarity</em></strong></li>
 <li><em>Of course, weak stationarity does not necessarily imply strong stationarity</em></li>
 <li><em>Ergodic processes are stationary</em></li>
 <li><em>A stationary process is not necessarily ergodic</em></li>
 </ul>
-<h1 id="Stationarity"><a href="#Stationarity" class="headerlink" title="Stationarity"></a>Stationarity</h1><p>First, let’s starts from an example.</p>
+<h1 id="Stationarity"><a href="#Stationarity" class="headerlink" title="Stationarity"></a>Stationarity</h1><p>First, let’s start from the below figure.</p>
 <p><img src="https://i.imgur.com/9snkptn.png" alt=""></p>
 <p>In figure above it is showing a stochastic process, which has $n$ realizations ${X_1(t), X_2(t), … , X_n(t)}$. As it is indicated in the right upper conor, the stochastic process can be characterized in time domain and amplitude domain, corresponding to horizontal and vertical axes, respectively. </p>
 <p><strong><em>Definition 1</em></strong> <em>The time series ${X_t}$ is said to be strictly stationary if for any finite sequence of integers $t_1, …, t_k$ and shift $h$ the distribution of $(X_{t_1}, … , X_{t_k})$ and $X_{t_1+h}, … ,X_{t_k+h}$ are the same.</em></p>
@@ -123,7 +125,7 @@ plt.show()
 <p>$$\frac{1}{n}\sum_{t=1}^{n}g[X(t)]\xrightarrow{a.s.}E[g[X(t_0)]]$$  </p>
 <p>And for any shift $\tau_1,…,\tau_k$, we have</p>
 <p>$$\frac{1}{n}\sum_{t=1}^{n}g[X(t),X(t+\tau_1),…,X(t+\tau_k)]\xrightarrow{a.s.}E[g[X(t_0),X(t_0+\tau_1),…,X(t_0+\tau_k)]]$$ </p>
-<p>An intuitive understanding of above formula is, with finite persitence, we can estimate our sample moments. Additionally, with sufficiently long time, average of time domain over one realization will converge to the average of amplitude domain over all realizations (horizontal average will converge to vertical average in the first figure).</p>
+<p>An intuitive understanding of above formula is, with finite persistence, we can estimate our sample moments. Additionally, with sufficiently long time, average of time domain over one realization will converge to the average of amplitude domain at one time point over all realizations (horizontal average will converge to vertical average in the first figure).</p>
 <p>Consider now a situation which is stationary with respect to $X(t)$. This means that there is no preferred origin in time. Thus, with large time interval in one realization, each sections should then constitute as a good representative ensemble of the statistical behavior of $X(t)$.</p>
 <h1 id="Ergodic-stationary-cases"><a href="#Ergodic-stationary-cases" class="headerlink" title="Ergodic stationary cases"></a>Ergodic stationary cases</h1><p>(1) As we discussed, independent white noise are stationary in every sense, it is also ergodic stationary process:</p>
 <pre><code class="Python">ensemble = []
@@ -171,6 +173,11 @@ for j in range(len(ensemble)):
 plt.show()
 </code></pre>
 <p><img src="https://i.imgur.com/42oqVKW.png" alt=""></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><em>Subba Rao, S. (2017) A Course in Time Series Analysis. Lecture notes</em></li>
+<li><em>Medina-Cetina, Z. (2017) Stochastic Mechanics. Lecture notes</em></li>
+<li><em>P. Brockwell and R. Davis. (1998) Time Series: Theory and Methods. Springer, New York</em></li>
+</ul>
 
       
       <!-- <a href="http://creativecommons.org/licenses/by-sa/4.0/">

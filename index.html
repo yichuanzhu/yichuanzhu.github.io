@@ -58,7 +58,7 @@
          <header>
             
               <div class="icon"></div>
-              <time datetime="2018-06-06T17:00:41.000Z"><a href="/2018/06/06/Ergodic stationary/">2018-06-06</a></time>
+              <time datetime="2018-06-06T17:42:55.000Z"><a href="/2018/06/06/Ergodic stationary/">2018-06-06</a></time>
             
               
             
@@ -69,162 +69,8 @@
           </header>
     <div class="entry">
       
-        <a id="more"></a>
-<h1 id="Whole-Picture"><a href="#Whole-Picture" class="headerlink" title="Whole Picture"></a>Whole Picture</h1><p>Stationarity is a very important concept in stochastic processes analysis. However, the notion itself is rather intuitive, which sometimes is not a good feature for understanding. Additionally, I observed some online lectures and papers are incorrect in their definitions, or unclear in description. I am still in learning process, but herein, some tips offered in this article are hopefully useful for readers.</p>
-<p>Let’s forget all definitions you’ve ever heard about stationarity (I know there are 1,000 different versions!), or ergodicity. Just read the following sentences several times. You don’t need to truly understand it, only remember these relationships. Later, we will discuss with illustrative examples:</p>
-<ul>
-<li><strong><em>Strong stationary does not necessarily imply weak stationarity</em></strong></li>
-<li><em>Of course, weak stationarity does not necessarily imply strong stationarity</em></li>
-<li><em>Ergodic processes are stationary</em></li>
-<li><em>A stationary process is not necessarily ergodic</em></li>
-</ul>
-<h1 id="Stationarity"><a href="#Stationarity" class="headerlink" title="Stationarity"></a>Stationarity</h1><p>First, let’s starts from an example.</p>
-<p><img src="https://i.imgur.com/9snkptn.png" alt=""></p>
-<p>In figure above it is showing a stochastic process, which has $n$ realizations ${X_1(t), X_2(t), … , X_n(t)}$. As it is indicated in the right upper conor, the stochastic process can be characterized in time domain and amplitude domain, corresponding to horizontal and vertical axes, respectively. </p>
-<p><strong><em>Definition 1</em></strong> <em>The time series ${X_t}$ is said to be strictly stationary if for any finite sequence of integers $t_1, …, t_k$ and shift $h$ the distribution of $(X_{t_1}, … , X_{t_k})$ and $X_{t_1+h}, … ,X_{t_k+h}$ are the same.</em></p>
-<p>To understand this, for example, we have two time points - $t=t_0$ and $t=t_0+h$, the joint distribution of $f(X_{t_0}, X_{t_0+h})$ can be obtained based on amplitude observations  $(X_1(t_0), X_2(t_0), …, X_n(t_0))$ and $(X_1(t_0+h), X_2(t_0+h), …, X_n(t_0+h))$. Under the assumption of strictly stationary, it requires this joint distribution is the same everywhere regardless of $t_0$ values. In practice, this rather strong assumption is oftentimes hard to check by the given data.</p>
-<p>Instead of strictly stationarity, we have another stationarity assumption.</p>
-<p><strong><em>Definition 2</em></strong> <em>The time series ${X_t}$ is said to be weak stationary (or second order stationary) if</em></p>
-<ul>
-<li><em>$E[X_t]=\mu$ does not depend on $t$</em></li>
-<li><em>$var[X_t]=\sigma^2$ does not depend on $t$</em></li>
-<li><em>$cov(X_t,X_{t+h})$ exists, is finite, and depends only on $h$ but not on $t$ for all possible $h$</em></li>
-</ul>
-<p>The most obvious difference between strictly and weak stationarity is the former requires the whole joint distribution is the same for all $t$, while the latter only ask the first and second moments keep unchange. </p>
-<p>(1) A simple example of stationary in every sense is given below (independent white noise):</p>
-<pre><code class="python">import numpy as np
-import matplotlib.pyplot as plt
-
-sampleMean = 0
-sampleStd = 1 
-num_samples = 100
-normSamples = np.random.normal(sampleMean, sampleStd, size=num_samples)
-
-plt.plot(normSamples)
-plt.show()
-</code></pre>
-<p><img src="https://i.imgur.com/IEHJ2pk.png" alt=""></p>
-<p>(2) An example of weakly stationary but not strictly stationary:<br>Assume,<br>$$X_t=cos(tw)(t=1,2,…)$$<br>Since $E[X_t]=0$, $Var[X_t]=1/2$ and $Cov(X_{t_1}, X_{t_2})=0$ for $t_1 \neq t_2$, ${X_t}$ is weakly stationary. However, the process is not strictly stationary. Values in the sequence are clearly dependent, and the joint distribution $f(X_{t_1}, X_{t_2})$ will depend not only on relative but also on absolute positions of $X_{t_1}$ and $X_{t_2}$.</p>
-<p>(3) Example that strictly stationary does not necessarily imply weakly stationary:</p>
-<p>An i.i.d. process with standard Cauchy distribution is strictly stationary but not weakly stationary because the second moment of the process is not finite.</p>
-<pre><code class="python">cauchySamples = np.random.standard_cauchy(size=num_samples)
-
-plt.plot(cauchySamples)
-plt.show()
-</code></pre>
-<p><img src="https://i.imgur.com/rmDVFqr.png" alt=""></p>
-<p>(4) If a process is strictly stationary and the second moment <strong>is finite</strong>, then it is weakly stationary.</p>
-<p>(5) <strong>In the case of Gaussian stochastic process, the two definitions of stationarity are equivalent.</strong></p>
-<h1 id="Ergodicity"><a href="#Ergodicity" class="headerlink" title="Ergodicity"></a>Ergodicity</h1><p>The full definition of ergodicity is quite complex and is rarely discussed in stochastic analysis (see Billingsley, 1994, page 312-314). However, one consequence of ergodicity - the ergodic theorem, is useful in stochastic process analysis, and states that if ${X_t}$ is an ergodic stationary process then,</p>
-<p>$$\frac{1}{n}\sum_{t=1}^{n}g[X(t)]\xrightarrow{a.s.}E[g[X(t_0)]]$$  </p>
-<p>And for any shift $\tau_1,…,\tau_k$, we have</p>
-<p>$$\frac{1}{n}\sum_{t=1}^{n}g[X(t),X(t+\tau_1),…,X(t+\tau_k)]\xrightarrow{a.s.}E[g[X(t_0),X(t_0+\tau_1),…,X(t_0+\tau_k)]]$$ </p>
-<p>An intuitive understanding of above formula is, with finite persitence, we can estimate our sample moments. Additionally, with sufficiently long time, average of time domain over one realization will converge to the average of amplitude domain over all realizations (horizontal average will converge to vertical average in the first figure).</p>
-<p>Consider now a situation which is stationary with respect to $X(t)$. This means that there is no preferred origin in time. Thus, with large time interval in one realization, each sections should then constitute as a good representative ensemble of the statistical behavior of $X(t)$.</p>
-<h1 id="Ergodic-stationary-cases"><a href="#Ergodic-stationary-cases" class="headerlink" title="Ergodic stationary cases"></a>Ergodic stationary cases</h1><p>(1) As we discussed, independent white noise are stationary in every sense, it is also ergodic stationary process:</p>
-<pre><code class="Python">ensemble = []
-num_realizations = 100
-
-for i in range(num_realizations):
-    realization = np.random.normal(sampleMean, sampleStd, size=num_samples)
-    ensemble.append(realization)
-
-for j in range(len(ensemble)):    
-    plt.plot(ensemble[j])
-
-plt.show()
-</code></pre>
-<p><img src="https://i.imgur.com/N7M7ibj.png" alt=""></p>
-<p>(2) Case that a stationary process that is not ergodic. Consider that {$\varepsilon_t$} are i.i.d. random variables and $Z$ is a Bernoulli random variable with outcomes {$0, 1$} (where the chance of either outcome is half). Suppose that $Z$ stays the same for all $t$. Define</p>
-<span>$$X_t=
-\begin{cases}
-\mu_1+\varepsilon_t, &amp; Z=0 \\
-\mu_2+\varepsilon_t, &amp; Z=1
-\end{cases}$$</span><!-- Has MathJax -->
-<p>It is clear that $E(X_t)=\frac{1}{2}(\mu_1+\mu_2)$. This is a stationary sequence. However, for each realization, that $\frac{1}{T}\sum_{t=1}^{T}X(t)$ will only converge to one of the means, rather than $\frac{1}{2}(\mu_1+\mu_2)$. Hence this is a stationary but not ergodic process.</p>
-<pre><code class="python">from scipy.stats import bernoulli
-
-# generate random numbers
-p = 0.5
-r = bernoulli.rvs(p, size=num_realizations)
-
-# mean
-mu_1 = 5
-mu_2 = -5
-
-ensemble = []
-for i in range(len(r)):
-    noise = np.random.normal(sampleMean, sampleStd, size=num_samples)
-    if r[i] == 0:
-        realization = noise + mu_1
-    else:
-        realization = noise + mu_2
-    ensemble.append(realization)  
-
-for j in range(len(ensemble)):    
-    plt.plot(ensemble[j])
-
-plt.show()
-</code></pre>
-<p><img src="https://i.imgur.com/42oqVKW.png" alt=""></p>
-
-      
-      <!-- <a href="http://creativecommons.org/licenses/by-sa/4.0/">
-      <div class="post-license">The content of this post is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</div>
-      </a> --> 
-<!--     <div>
-    <img src="https://i.imgur.com/3zE35HW.png" width="100px" align="left"> 
-    </div>  -->  
-    <!-- </div> -->
-    </div>
-<!--     <div class="post-license" align="right">
-        Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>
-    </div> -->
-    <footer>
-<!--     <div>
-    <img src="https://i.imgur.com/3zE35HW.png" width="100px" align="left"> 
-    </div>  -->
-    <!-- <br/>   -->
-      
-        
-        
-      
-      <div class="clearfix"></div>
-      
-      
-      <div id="disqus_thread"></div>
-    </footer>
-</article>
-
-
-
-
-
-
-
-
-
-
-  <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/rainbow.css">
-<article class="post">
-  
-       <div class="post-content">
-         <header>
-            
-              <div class="icon"></div>
-              <time datetime="2018-05-07T00:44:17.000Z"><a href="/2018/05/06/R_basic/">2018-05-06</a></time>
-            
-              
-            
-  
-    <h1 class="title"><a href="/2018/05/06/R_basic/">Basic Statistics with R</a></h1>
-  
-
-          </header>
-    <div class="entry">
-      
-        <p><img src="https://imgur.com/Qh1CnVN.png" width="200px" height="50px" class="center"></p>
-<p>Using R to perform some elementary statistics. Including summary statistics, corrlations, and regressions (linear/non-linear).<br>
+        <p><img src="https://i.imgur.com/IEHJ2pk.png" alt=""></p>
+<p>Discuss strictly/weakly stationarity, ergodic theorem, and conditions and relationships of assumptions. Several code snippets are used for example reference.</p>
       
       <!-- <a href="http://creativecommons.org/licenses/by-sa/4.0/">
       <div class="post-license">The content of this post is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</div>
@@ -245,7 +91,7 @@ plt.show()
       
         
           <div class="alignleft">
-            <a href="/2018/05/06/R_basic/#more" class="more-link">Read More</a>
+            <a href="/2018/06/06/Ergodic stationary/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -273,163 +119,19 @@ plt.show()
          <header>
             
               <div class="icon"></div>
-              <time datetime="2018-04-22T01:11:08.000Z"><a href="/2018/04/21/ffmpeg power point/">2018-04-21</a></time>
+              <time datetime="2018-06-06T17:42:45.000Z"><a href="/2018/06/06/R_basic/">2018-06-06</a></time>
             
               
             
   
-    <h1 class="title"><a href="/2018/04/21/ffmpeg power point/">Creating Powerpoint Compatible videos with FFMPEG</a></h1>
+    <h1 class="title"><a href="/2018/06/06/R_basic/">Basic Statistics with R</a></h1>
   
 
           </header>
     <div class="entry">
       
-        <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%"></p>
-<p>Last week, I generated some videos and need to play them synchronous in the power point. It went well at the beginning but stuttered and stopped after three or four loops. I found this glitch is common for plenty of occasions, this article is aiming at providing some solutions, with the powerful <code>ffmpeg</code>.</p>
-<h2 id="1-The-crux-of-the-matter"><a href="#1-The-crux-of-the-matter" class="headerlink" title="1. The crux of the matter"></a>1. The crux of the matter</h2><p>Power point supports tons of video formats. However, it doesn’t mean all of them are equally supported inside. Actually, Microsoft offered <a href="https://support.office.com/en-us/article/Video-and-audio-file-formats-supported-in-PowerPoint-d8b12450-26db-4c7b-a5c1-593d3418fb59" target="_blank" rel="noopener">reference about supported format and recommendations</a>. Mp4 files encoded with <code>H.264</code> video (a.k.a. MPEG-4 AVC) and <code>AAC</code> audio are favored format. Thus, if you only have one video to present the task is pretty simple, just re-enconde using libx264.</p>
-<h2 id="2-Format-converting"><a href="#2-Format-converting" class="headerlink" title="2. Format converting"></a>2. Format converting</h2><p>The first step is to install <code>ffmpeg</code> you can find tutorials for Windows <a href="https://www.wikihow.com/Install-FFmpeg-on-Windows" target="_blank" rel="noopener">here</a>, and for Mac <a href="https://ericholsinger.com/install-ffmpeg-on-a-mac" target="_blank" rel="noopener">here</a>. For windows user, if you don’t have admisnistor privilege, you can just unzip the package and <code>cd</code> the bin folder to run the program. </p>
-<p>After installation, typing <code>ffmpeg</code> in the terminal, if you see the window looks like below, you installed successfully!</p>
-<p><img src="https://i.imgur.com/XJ3e39t.png" alt=""></p>
-<p>Let’s convert a video with <code>H.264</code>, in <code>ffmpeg</code> it would be like:</p>
-<pre><code>ffmpeg -i field.mp4 -c:v libx264 -crf 18 field_crf18.mp4
-</code></pre><p>Comparing the quality:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"><em>Original video</em></th>
-<th style="text-align:center"><em>Re-encode with crf=18</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://i.imgur.com/FxQV3do.png" width="350px" height="210px" class="center"></td>
-<td style="text-align:center"><img src="https://imgur.com/OtkEiEV.png" width="350px" height="210px" class="center"></td>
-</tr>
-</tbody>
-</table>
-<p>Note here we set constant rate factor (<code>crf</code>) as 18. The range of the <code>crf</code> scale is <code>0–51</code>, where <code>0</code> is lossless, <code>23</code> is the default, and <code>51</code> is worst quality possible. A lower value leads to higher quality, and a subjectively sane range is <code>17-28</code>. Consider 17 or 18 to be visually lossless or nearly so. However, let’s compare the result when <code>crf=45</code>:</p>
-<pre><code>ffmpeg -i field.mp4 -c:v libx264 -crf 45 field_crf45.mp4
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center"><em>Original video</em></th>
-<th style="text-align:center"><em>Re-encode with crf=45</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://i.imgur.com/FxQV3do.png" width="350px" height="210px" class="center"></td>
-<td style="text-align:center"><img src="https://imgur.com/RL5UEFa.png" width="350px" height="210px" class="center"></td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-Scale-crop-and-pad"><a href="#3-Scale-crop-and-pad" class="headerlink" title="3. Scale, crop, and pad"></a>3. Scale, crop, and pad</h2><p>If the video is wider or too short for presentation, we need ways to resize it. Herein, we introduce some common options should do the trick.</p>
-<h3 id="3-1-Scale"><a href="#3-1-Scale" class="headerlink" title="3.1 Scale"></a>3.1 Scale</h3><p>First, we have a video with original size as $1920\times1080$. It can be resized like this:</p>
-<pre><code>ffmpeg -i moon.mp4 -vf scale=640:480,setdar=4:3 moon_sc.mp4
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center"><em>Orginal video</em></th>
-<th style="text-align:center"><em>Resize into $640\times480$</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
-<td style="text-align:center"><img src="https://imgur.com/ewExP82.png" style="zoom:25%" class="center"></td>
-</tr>
-</tbody>
-</table>
-<p>The video has been distorted with another aspect ratio. We can set the width or height to <code>-2</code> (computed value will be even) in order to let <code>ffmpeg</code> resize the video keeping the aspect ratio:</p>
-<pre><code>ffmpeg -i moon.mp4 -vf scale=-2:480 moon_sc_ar.mp4
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center"><em>Orginal video</em></th>
-<th style="text-align:center"><em>Resize with original aspect ratio</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
-<td style="text-align:center"><img src="https://imgur.com/s7B5oiU.png" style="zoom:25%" class="center"></td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-2-Crop"><a href="#3-2-Crop" class="headerlink" title="3.2 Crop"></a>3.2 Crop</h3><p>Your rescaled video size from last section is $853\times480$, it is bigger than expected $640\times480$. We can crop the video like this:</p>
-<pre><code>ffmpeg -i moon_sc_ar.mp4 -vf &quot;crop=640:in_h:(in_w-out_w)/2:0&quot; moon_sc_ar_crp.mp4
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center"><em>Re-sized video</em></th>
-<th style="text-align:center"><em>After cropping</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://imgur.com/s7B5oiU.png" style="zoom:25%" class="center"></td>
-<td style="text-align:center"><img src="https://imgur.com/mTVI06S.png" style="zoom:25%" class="center"></td>
-</tr>
-</tbody>
-</table>
-<p>In the definition of  <code>crop=out_w:out_h:x:y</code>:</p>
-<ul>
-<li><code>out_w</code> indicate the width of the output rectangle</li>
-<li><code>out_h</code> indicate the height of the output rectangle</li>
-<li><code>x</code> and <code>y</code> are the top left corner of the output rectangle</li>
-</ul>
-<p>In the given example <code>crop=640:in_h:(in_w-out_w)/2:0</code>, the output rectangle has width=640, output height=input height, and will reserve the central area.</p>
-<h3 id="3-3-Pad"><a href="#3-3-Pad" class="headerlink" title="3.3 Pad"></a>3.3 Pad</h3><p>The last one is pad. It is basically very similar to the crop process. For example, if we want to pad last video back to original size $1920\times1080$:</p>
-<pre><code>ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2&quot; moon_pad.mp4
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center"><em>Original video</em></th>
-<th style="text-align:center"><em>After padding</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
-<td style="text-align:center"><img src="https://imgur.com/5jnPjRg.png" style="zoom:25%" class="center"></td>
-</tr>
-</tbody>
-</table>
-<p>The color of padding area can be changed into white like this:</p>
-<pre><code>ffmpeg -i moon_sc_ar_crp.mp4 -vf &quot;pad=1920:1080:(out_w-in_w)/2:(out_h-in_h)/2:white&quot; moon_padwhite.mp4
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center"><em>Original video</em></th>
-<th style="text-align:center">Padding with white background</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://imgur.com/QsQ4Y4A.png" style="zoom:25%" class="center"></td>
-<td style="text-align:center"><img src="https://imgur.com/xzKdFS6.png" style="zoom:25%" class="center"></td>
-</tr>
-</tbody>
-</table>
-<h2 id="4-Stack"><a href="#4-Stack" class="headerlink" title="4. Stack"></a>4. Stack</h2><p>Now, <code>ffmpeg</code> has provided <code>hstack</code> and <code>vstack</code> that we can use to stack videos.</p>
-<p>For example, we have two videos:</p>
-<p> <img src="https://imgur.com/yX8SRSf.png" style="zoom:27%" class="center"> <img src="https://imgur.com/PNqIOOo.png" style="zoom:27%" class="center"></p>
-<p>We can stack videos horizontally:</p>
-<pre><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex hstack hComb.mp4
-</code></pre><p><img src="https://imgur.com/dztUXOW.jpg" style="zoom:25%" class="center"></p>
-<p>Or vertically:</p>
-<pre><code>ffmpeg -i relax.mp4 -i stream.mp4 -filter_complex vstack vComb.mp4
-</code></pre><p><img src="https://imgur.com/F5AvFvV.jpg" style="zoom:25%" class="center"></p>
-<p>Let’s using <code>hstack</code> and <code>vstack</code> to create a $4\times4$ video mosaic:</p>
-<pre><code>ffmpeg -i field.mp4 -i moon.mp4 -i relax.mp4 -i stream.mp4 \
--filter_complex &quot;[0:v][1:v]hstack[h1];[2:v][3:v]hstack[h2];[h1][h2]vstack[v]&quot; \
--map &quot;[v]&quot; -c:v libx264 -crf 18 combAll.mp4
-</code></pre><div class="video-container"><iframe src="//www.youtube.com/embed/uXvismUlmMU" frameborder="0" allowfullscreen></iframe></div>
-<p>Woohoo!!</p>
-<p>(All sample videos are from <a href="https://videos.pexels.com/" target="_blank" rel="noopener">https://videos.pexels.com/</a>)</p>
-<div class="post-license"><div class="post-license-icon" title="CC-BY-SA 4.0">    <img src="https://i.imgur.com/3zE35HW.png" width="150px"><div class="post-license-text"><br><br>Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a></div></div></div>
-
-<div class="post-content-end">END</div>
+        <p><img src="https://imgur.com/Qh1CnVN.png" width="200px" height="50px" class="center"></p>
+<p>Using R to perform some elementary statistics. Including summary statistics, corrlations, and regressions (linear/non-linear).<br>
       
       <!-- <a href="http://creativecommons.org/licenses/by-sa/4.0/">
       <div class="post-license">The content of this post is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</div>
@@ -448,6 +150,70 @@ plt.show()
     </div>  -->
     <!-- <br/>   -->
       
+        
+          <div class="alignleft">
+            <a href="/2018/06/06/R_basic/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+      
+      
+      <div id="disqus_thread"></div>
+    </footer>
+</article>
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/rainbow.css">
+<article class="post">
+  
+       <div class="post-content">
+         <header>
+            
+              <div class="icon"></div>
+              <time datetime="2018-06-06T17:15:00.000Z"><a href="/2018/06/06/ffmpeg power point/">2018-06-06</a></time>
+            
+              
+            
+  
+    <h1 class="title"><a href="/2018/06/06/ffmpeg power point/">Creating Powerpoint Compatible videos with FFMPEG</a></h1>
+  
+
+          </header>
+    <div class="entry">
+      
+        <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%"><br>
+      
+      <!-- <a href="http://creativecommons.org/licenses/by-sa/4.0/">
+      <div class="post-license">The content of this post is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</div>
+      </a> --> 
+<!--     <div>
+    <img src="https://i.imgur.com/3zE35HW.png" width="100px" align="left"> 
+    </div>  -->  
+    <!-- </div> -->
+    </div>
+<!--     <div class="post-license" align="right">
+        Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+    </div> -->
+    <footer>
+<!--     <div>
+    <img src="https://i.imgur.com/3zE35HW.png" width="100px" align="left"> 
+    </div>  -->
+    <!-- <br/>   -->
+      
+        
+          <div class="alignleft">
+            <a href="/2018/06/06/ffmpeg power point/#more" class="more-link">Read More</a>
+          </div>
         
         
       

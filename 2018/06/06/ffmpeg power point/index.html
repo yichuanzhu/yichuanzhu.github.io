@@ -6,7 +6,7 @@
   <title>Creating Powerpoint Compatible videos with FFMPEG | Pale Blue Dot</title>
   <meta name="author" content="Yichuan Zhu">
   
-  <meta name="description" content="Last week, I generated some videos and need to play them synchronous in the power point. It went well at the beginning but stuttered and stopped after">
+  <meta name="description" content="">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -59,7 +59,7 @@
          <header>
             
               <div class="icon"></div>
-              <time datetime="2018-04-22T01:11:08.000Z"><a href="/2018/04/21/ffmpeg power point/">2018-04-21</a></time>
+              <time datetime="2018-06-06T17:15:00.000Z"><a href="/2018/06/06/ffmpeg power point/">2018-06-06</a></time>
             
               
                 <span class="floatRight"><span class="post-count" id="busuanzi_container_page_pv">Page views: <span id="busuanzi_value_page_pv"></span></span>
@@ -73,7 +73,7 @@
           </header>
     <div class="entry">
       
-        <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%"></p>
+        <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%"><br><a id="more"></a></p>
 <p>Last week, I generated some videos and need to play them synchronous in the power point. It went well at the beginning but stuttered and stopped after three or four loops. I found this glitch is common for plenty of occasions, this article is aiming at providing some solutions, with the powerful <code>ffmpeg</code>.</p>
 <h2 id="1-The-crux-of-the-matter"><a href="#1-The-crux-of-the-matter" class="headerlink" title="1. The crux of the matter"></a>1. The crux of the matter</h2><p>Power point supports tons of video formats. However, it doesn’t mean all of them are equally supported inside. Actually, Microsoft offered <a href="https://support.office.com/en-us/article/Video-and-audio-file-formats-supported-in-PowerPoint-d8b12450-26db-4c7b-a5c1-593d3418fb59" target="_blank" rel="noopener">reference about supported format and recommendations</a>. Mp4 files encoded with <code>H.264</code> video (a.k.a. MPEG-4 AVC) and <code>AAC</code> audio are favored format. Thus, if you only have one video to present the task is pretty simple, just re-enconde using libx264.</p>
 <h2 id="2-Format-converting"><a href="#2-Format-converting" class="headerlink" title="2. Format converting"></a>2. Format converting</h2><p>The first step is to install <code>ffmpeg</code> you can find tutorials for Windows <a href="https://www.wikihow.com/Install-FFmpeg-on-Windows" target="_blank" rel="noopener">here</a>, and for Mac <a href="https://ericholsinger.com/install-ffmpeg-on-a-mac" target="_blank" rel="noopener">here</a>. For windows user, if you don’t have admisnistor privilege, you can just unzip the package and <code>cd</code> the bin folder to run the program. </p>
@@ -326,7 +326,7 @@
 <script>
   var disqus_shortname = 'yichuanzhu';
   
-  var disqus_url = 'http://yoursite.com/2018/04/21/ffmpeg power point/';
+  var disqus_url = 'http://yoursite.com/2018/06/06/ffmpeg power point/';
   
   (function(){
     var dsq = document.createElement('script');
@@ -363,8 +363,8 @@ $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
     <script type="text/javascript">
     var disqus_shortname = 'yichuanzhu';
     var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/04/21/ffmpeg power point/';
-        this.page.identifier = '/2018/04/21/ffmpeg power point/';
+        this.page.url = 'http://yoursite.com/2018/06/06/ffmpeg power point/';
+        this.page.identifier = '/2018/06/06/ffmpeg power point/';
         this.page.title = 'Creating Powerpoint Compatible videos with FFMPEG';
     };
     (function(){
