@@ -94,7 +94,8 @@ a:hover {
   -ms-filter: none;
   filter: none;
   font-size: 0.85em;
-  line-height: 5px;
+  line-height: 0px;
+  text-align: center;
 /*line-height 25px*/
 /*transition all ease-out 400ms*/
 /*br
@@ -102,17 +103,16 @@ a:hover {
       line-height 1px*/
 }
 .post-license .post-license-text {
-  line-height: 17px;
+  line-height: 15px;
   color: #000002;
   font-size: 0.9em;
   word-spacing: 0.04em;
   max-height: 0;
-  max-width: 400px;
-  margin: auto;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   text-align: center;
+  max-width: 50px;
 /*transition opacity 0.3s 0.1s ease*/
 }
 .post-license .post-license-icon:hover>.post-license-text {
@@ -120,6 +120,7 @@ a:hover {
   opacity: 1;
   -ms-filter: none;
   filter: none;
+  max-width: 50px;
 /*font-size .85em*/
 /*line-height 25px*/
   -webkit-transition: opacity 0.3s 0.1s ease-out;

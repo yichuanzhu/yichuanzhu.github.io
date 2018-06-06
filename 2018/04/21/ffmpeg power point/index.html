@@ -6,7 +6,7 @@
   <title>Creating Powerpoint Compatible videos with FFMPEG | Pale Blue Dot</title>
   <meta name="author" content="Yichuan Zhu">
   
-  <meta name="description" content="">
+  <meta name="description" content="Last week, I generated some videos and need to play them synchronous in the power point. It went well at the beginning but stuttered and stopped after">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -74,7 +74,6 @@
     <div class="entry">
       
         <p><img src="https://imgur.com/s9vVpmq.png" style="zoom:15%"></p>
-<a id="more"></a>
 <p>Last week, I generated some videos and need to play them synchronous in the power point. It went well at the beginning but stuttered and stopped after three or four loops. I found this glitch is common for plenty of occasions, this article is aiming at providing some solutions, with the powerful <code>ffmpeg</code>.</p>
 <h2 id="1-The-crux-of-the-matter"><a href="#1-The-crux-of-the-matter" class="headerlink" title="1. The crux of the matter"></a>1. The crux of the matter</h2><p>Power point supports tons of video formats. However, it doesn’t mean all of them are equally supported inside. Actually, Microsoft offered <a href="https://support.office.com/en-us/article/Video-and-audio-file-formats-supported-in-PowerPoint-d8b12450-26db-4c7b-a5c1-593d3418fb59" target="_blank" rel="noopener">reference about supported format and recommendations</a>. Mp4 files encoded with <code>H.264</code> video (a.k.a. MPEG-4 AVC) and <code>AAC</code> audio are favored format. Thus, if you only have one video to present the task is pretty simple, just re-enconde using libx264.</p>
 <h2 id="2-Format-converting"><a href="#2-Format-converting" class="headerlink" title="2. Format converting"></a>2. Format converting</h2><p>The first step is to install <code>ffmpeg</code> you can find tutorials for Windows <a href="https://www.wikihow.com/Install-FFmpeg-on-Windows" target="_blank" rel="noopener">here</a>, and for Mac <a href="https://ericholsinger.com/install-ffmpeg-on-a-mac" target="_blank" rel="noopener">here</a>. For windows user, if you don’t have admisnistor privilege, you can just unzip the package and <code>cd</code> the bin folder to run the program. </p>
@@ -292,6 +291,8 @@
   
     <li><a href="/categories/Media-Production/">Media Production</a><small>1</small></li>
   
+    <li><a href="/categories/Random-fields-and-Stochastic-Processes/">Random fields and Stochastic Processes</a><small>1</small></li>
+  
   </ul>
 </div>
 
@@ -300,7 +301,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ffmpeg/" style="font-size: 10px;">ffmpeg</a> <a href="/tags/power-point/" style="font-size: 10px;">power point</a> <a href="/tags/statistics/" style="font-size: 10px;">statistics</a> <a href="/tags/video/" style="font-size: 10px;">video</a>
+    <a href="/tags/Ergodic/" style="font-size: 10px;">Ergodic</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ffmpeg/" style="font-size: 10px;">ffmpeg</a> <a href="/tags/power-point/" style="font-size: 10px;">power point</a> <a href="/tags/random-process/" style="font-size: 10px;">random process</a> <a href="/tags/stationary/" style="font-size: 10px;">stationary</a> <a href="/tags/statistics/" style="font-size: 10px;">statistics</a> <a href="/tags/video/" style="font-size: 10px;">video</a>
   </div>
 </div>
 
