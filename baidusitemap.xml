@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://www.yichuanzhu.com/2018/06/06/Ergodic%20stationary/</loc>
+    <lastmod>2018-06-06T20:30:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ergodic stationary process</title>
+        <pubTime>2018-06-06T20:30:04.000Z</pubTime>
+        
+        <tag>Ergodic</tag>
+         
+        <tag>stationary</tag>
+         
+        <tag>random process</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Random fields and Stochastic Processes" url="http://www.yichuanzhu.com/categories/Random-fields-and-Stochastic-Processes/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.yichuanzhu.com/2018/06/06/R_basic/</loc>
+    <lastmod>2018-06-06T17:42:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Basic Statistics with R</title>
+        <pubTime>2018-06-06T17:42:45.000Z</pubTime>
+        
+        <tag>R</tag>
+         
+        <tag>statistics</tag>
+         
+         
+           
+             
+              <breadCrumb title="Computational Statistic" url="http://www.yichuanzhu.com/categories/Computational-Statistic/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.yichuanzhu.com/2018/06/06/ffmpeg%20power%20point/</loc>
+    <lastmod>2018-06-06T17:15:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Creating Powerpoint Compatible videos with FFMPEG</title>
+        <pubTime>2018-06-06T17:15:00.000Z</pubTime>
+        
+        <tag>ffmpeg</tag>
+         
+        <tag>power point</tag>
+         
+        <tag>video</tag>
+         
+         
+           
+             
+              <breadCrumb title="Media Production" url="http://www.yichuanzhu.com/categories/Media-Production/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+</urlset>
